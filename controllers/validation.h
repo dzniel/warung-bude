@@ -14,18 +14,12 @@ bool isValidDishName(char *str) {
 
 // Memastikan price ada di range 1000 sampai 50000
 bool isValidPrice(int price) {
-  if(price < 1000 || price > 50000) {
-    return false;
-  }
-  return true;
+  return (price >= 1000 && price <= 50000) ? true : false;
 }
 
 // Memastikan quantity ada di range 1 sampai 999
 bool isValidQty(int qty) {
-  if(qty < 1 || qty > 999) {
-    return false;
-  }
-  return true;
+  return (qty >= 1 && qty <= 999) ? true : false;
 }
 
 // Memastikan dish exist di dish list
@@ -51,11 +45,11 @@ bool isValidCustName(char *name) {
   currCust = headCust[index];
   while(currCust) {
     if(!strcmp(currCust->name, name)) {
-      return true;
+      return false;
     }
     currCust = currCust->nextCust;
   }
-  return false;
+  return true;
 }
 
 // Memastikan nama yang diinput tidak mengandung spasi dan symbol selain alfabet
@@ -72,11 +66,8 @@ bool isValidSearchName(char *str) {
 }
 
 // Memastikan jumlah yang diinput tidak melebihi jumlah yang ada
-bool isValidAmt(int amt, int n) {
-  if(amt < 1 || amt > n) {
-    return false;
-  }
-  return true;
+bool isValidAmount(int amount, int n) {
+  return (amount >= 1 || amount <= n) ? true : false;
 }
 
 // Memastikan dish dan quantity yang diminta tersedia pada list
@@ -118,8 +109,5 @@ bool isValidOrder(char *str) {
 
 // Memastikan index pada table berisi customer setidaknya 1
 bool isValidIndex(int index) {
-  if(headCust[index]) {
-    return true;
-  }
-  return false;
+  return headCust[index] ? true : false;
 }

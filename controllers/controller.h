@@ -53,8 +53,7 @@ void pushHead(char *name, int price, int qty) {
   Dish *temp = createDish(name, price, qty);
   if(!head) {
     head = tail = temp;
-  }
-  else {
+  } else {
     temp->next = head;
     head->prev = temp;
     head = temp;
@@ -66,8 +65,7 @@ void pushTail(char *name, int price, int qty) {
   Dish *temp = createDish(name, price, qty);
   if(!head) {
     head = tail = temp;
-  }
-  else {
+  } else {
     tail->next = temp;
     temp->prev = tail;
     tail = temp;
@@ -79,14 +77,11 @@ void pushMid(char *name, int price, int qty) {
   Dish *temp = createDish(name, price, qty);
   if(!head) {
     head = tail = temp;
-  }
-  else if(qty <= head->qty) {
+  } else if(qty <= head->qty) {
     pushHead(name, price, qty);
-  }
-  else if(qty >= tail->qty) {
+  } else if(qty >= tail->qty) {
     pushTail(name, price, qty);
-  }
-  else {
+  } else {
     curr = head;
     while(qty > curr->qty) {
       curr = curr->next;
@@ -102,12 +97,10 @@ void pushMid(char *name, int price, int qty) {
 void popHead() {
   if(!head) {
     return;
-  }
-  else if(head == tail) {
+  } else if(head == tail) {
     head = tail = NULL;
     free(head);
-  }
-  else {
+  } else {
     Dish *temp = head;
     head = head->next;
     head->prev = NULL;
@@ -119,12 +112,10 @@ void popHead() {
 void popTail() {
   if(!head) {
     return;
-  }
-  else if(head == tail) {
+  } else if(head == tail) {
     head = tail = NULL;
     free(head);
-  }
-  else {
+  } else {
     Dish *temp = tail;
     tail = tail->prev;
     tail->next = NULL;
@@ -136,16 +127,14 @@ void popTail() {
 void popMid(int qty) {
   if(!head) {
     return;
-  }
-  else if(qty == head->qty) {
+  } else if(qty == head->qty) {
     popHead();
-  }
-  else if(qty == tail->qty) {
+  } else if(qty == tail->qty) {
     popTail();
-  }
-  else {
+  } else {
     curr = head;
     while(curr->next && qty != curr->qty) {
+    
       curr = curr->next;
     }
     curr->prev->next = curr->next;
@@ -159,8 +148,9 @@ void popMid(int qty) {
 unsigned long DJB2(char *str) {
   unsigned long hash = 5381;
   int c;
-  while ((c = *str++))
+  while ((c = *str++)) {
     hash = ((hash << 5) + hash) + c;
+  }
   return hash % 26;
 }
 
@@ -170,8 +160,7 @@ void insert(char *name) {
   Customer *temp = createCustomer(name);
   if(!headCust[index]) {
     headCust[index] = tailCust[index] = temp;
-  }
-  else {
+  } else {
     tailCust[index]->nextCust = temp;
     temp->prevCust = tailCust[index];
     tailCust[index] = temp;
@@ -216,8 +205,7 @@ void insertOrder(Customer *temp, char *name, int qty, int price) {
     Order *newOrder = createOrder(name, qty, price);
     if(!temp->headOrder) {
       temp->headOrder = temp->tailOrder = newOrder;
-    }
-    else {
+    } else {
       currOrder = temp->headOrder;
       while(currOrder) {
         currOrder = currOrder->nextOrder;

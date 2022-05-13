@@ -106,13 +106,13 @@ void order() {
     getchar();
   } while(!search(name)); // validasi input
   // Prompt user untuk input jumlah dish yang diinginkan
-  int amt;
+  int amount;
   do {
     printf("Insert the amount of dish: ");
-    scanf("%d", &amt); 
+    scanf("%d", &amount); 
     getchar();
-  } while(!isValidAmt(amt, totalDish)); // validasi input
-  for(int i = 1; i <= amt; i++) { // loop sesuai banyak dish yang diinginkan
+  } while(!isValidAmount(amount, totalDish)); // validasi input
+  for(int i = 1; i <= amount; i++) { // loop sesuai banyak dish yang diinginkan
     // Prompt user untuk pilihan dish yang diinginkan serta jumlah masing-masing dish
     int qty, price;
     char dishName[255];
